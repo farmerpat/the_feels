@@ -18,14 +18,14 @@ shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 mode = 0
-mass = 1.0
+mass = 0.05
 friction = 1.0
 bounce = 0.0
 gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
+contacts_reported = 1
+contact_monitor = true
 sleeping = false
 can_sleep = true
 velocity/linear = Vector2( 0, 0 )
@@ -47,5 +47,7 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[connection signal="body_enter" from="." to="." method="_on_bullet_body_enter"]
 
 
