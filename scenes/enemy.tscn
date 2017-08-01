@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://img/positive_feel.png" type="Texture" id=1]
-[ext_resource path="res://img/negative_feel.png" type="Texture" id=2]
+[ext_resource path="res://scripts/enemy.gd" type="Script" id=1]
+[ext_resource path="res://img/positive_feel.png" type="Texture" id=2]
+[ext_resource path="res://img/negative_feel.png" type="Texture" id=3]
 
 [node name="enemy" type="RigidBody2D"]
 
@@ -13,7 +14,7 @@ mode = 0
 mass = 1.0
 friction = 1.0
 bounce = 0.0
-gravity_scale = 1.0
+gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0
 contacts_reported = 0
@@ -24,15 +25,19 @@ velocity/linear = Vector2( 0, 0 )
 velocity/angular = 0.0
 damp_override/linear = -1.0
 damp_override/angular = -1.0
+script/script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="pos_feels" type="Sprite" parent="."]
 
 transform/scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="neg_feels" type="Sprite" parent="."]
 
 transform/scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 
