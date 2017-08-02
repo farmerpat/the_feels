@@ -120,6 +120,9 @@ func _on_player_body_enter( body ):
 	# figure out what to do about the "contacts_reported" field
 	# does it need to be larger than 1? similarly for bullet
 	if body.is_in_group("bullet"):
-		print("das a buleet")
-		# get feels type
-		emit_signal("player_shot", "neg")
+		if body.get_node("neg").is_visible():
+			print("das a neg buleet")
+			emit_signal("player_shot", "neg")
+		elif body.get_node("pos").is_visible():
+			print("das a pos buleet")
+			emit_signal("player_shot", "pos")

@@ -11,6 +11,18 @@ func _ready():
 	pass
 	#fire(Vector2(-1, 0))
 
+# pos/neg should be a constructor
+# argument, if gd has such a thing
+# better yet, bullet should
+# have positive and negative subclasses
+func make_pos():
+	get_node("neg").hide()
+	get_node("pos").show()
+
+func make_neg():
+	get_node("pos").hide()
+	get_node("neg").show()
+
 func fire(dir_vec):
 	#print ("in bullet fire")
 	fire_force = dir_vec
