@@ -8,7 +8,9 @@
 custom_solver_bias = 0.0
 radius = 21.4416
 
-[node name="bullet" type="RigidBody2D"]
+[node name="bullet" type="RigidBody2D" groups=[
+"bullet",
+]]
 
 transform/pos = Vector2( 454.933, 306.284 )
 input/pickable = false

@@ -4,7 +4,7 @@
 [ext_resource path="res://img/positive_feel.png" type="Texture" id=2]
 [ext_resource path="res://img/negative_feel.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 109.179
@@ -29,7 +29,7 @@ tracks/0/keys = {
 
 transform/pos = Vector2( 454.183, 262.117 )
 input/pickable = false
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -41,8 +41,8 @@ bounce = 0.0
 gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
+contacts_reported = 1
+contact_monitor = true
 sleeping = false
 can_sleep = true
 velocity/linear = Vector2( 0, 0 )
@@ -75,10 +75,22 @@ autoplay = ""
 transform/scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 3 )
 
+[node name="neg_feels_animator" type="AnimationPlayer" parent="neg_feels"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[connection signal="body_enter" from="." to="." method="_on_player_body_enter"]
 
 

@@ -12,7 +12,7 @@ func _ready():
 	#fire(Vector2(-1, 0))
 
 func fire(dir_vec):
-	print ("in bullet fire")
+	#print ("in bullet fire")
 	fire_force = dir_vec
 	# probably firespeed should be an optional argument
 	fire_force *= fire_speed
@@ -26,7 +26,7 @@ func _integrate_forces(state):
 
 func _on_bullet_body_enter( body ):
 	if body.get_name() == "player":
-		print("hit player!")
+		#print("hit player!")
 		# show an absorption animation or something
 		# and fire a custom signal that tells player
 		# what to expand and by how much
