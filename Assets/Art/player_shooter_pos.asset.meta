@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 5ceda5aeb13e149a59ba0f230adb24e8
+timeCreated: 1502832686
+licenseType: Free
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!-- Generator: Adobe Illustrator
+    21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\n<svg version=\"1.1\"
+    id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"
+    x=\"0px\" y=\"0px\"\n\t viewBox=\"0 0 136.8 123.8\" style=\"enable-background:new
+    0 0 136.8 123.8;\" xml:space=\"preserve\">\n<style type=\"text/css\">\n\t.st0{fill:#4C6EB0;stroke:#4C6EB0;stroke-width:0.25;stroke-miterlimit:10;}\n\t.st1{fill:none;stroke:#4C6EB0;stroke-width:0.25;stroke-miterlimit:10;}\n</style>\n<title>player_shooter_pos</title>\n<g
+    id=\"Layer_2\">\n\t<g id=\"Shooter\">\n\t\t<path class=\"st0\" d=\"M125.2,61.9l1.3-5.5c0,0,0.1,5.6,10.1,5.6c-10,0-9.9,5.5-9.9,5.5L125.2,61.9\"/>\n\t\t<path
+    class=\"st1\" d=\"M123.7,61.9c0,34.1-27.7,61.8-61.8,61.8S0.1,96,0.2,61.9c0-34.1,27.7-61.8,61.8-61.8\n\t\t\tc30.1,0,55.9,21.7,60.9,51.4C123.4,55,123.7,58.5,123.7,61.9z\"/>\n\t\t<path
+    class=\"st1\" d=\"M122.8,51.6v-0.3c0,0,2.4,10.7,12.3,10.7c-10,0-12.3,10.7-12.3,10.7v-0.3\"/>\n\t\t<circle
+    class=\"st0\" cx=\"135.5\" cy=\"61.9\" r=\"1.2\"/>\n\t\t<path class=\"st0\" d=\"M123.2,52.5c0,0,1.2,3.8,2.8,5.1l0.4,1.2l-0.1,7c0,0-3.7,5.4-3.1,5.4l0.5-6.5l0.1-4.3l-0.1-2.9l-0.2-2.3\n\t\t\tL123.2,52.5z\"/>\n\t\t<path
+    class=\"st0\" d=\"M133.3,61.9c0-0.5,0.1-1,0.4-1.4c0.1-0.1,0.2-0.3,0.3-0.4c-0.2,0.1-0.4,0.2-0.6,0.4c-0.5,0.3-0.8,0.8-0.8,1.4\n\t\t\tc0.1,0.8,0.7,1.5,1.5,1.8C133.6,63.2,133.3,62.6,133.3,61.9z\"/>\n\t</g>\n</g>\n</svg>\n"
+  assetBundleName: 
+  assetBundleVariant: 
