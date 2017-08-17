@@ -11,6 +11,7 @@ public class MyPlayerController : MonoBehaviour {
 	private float negativeInputTolerance;
 	private Vector2 movementUnit = new Vector2 ();
 	private int datAngle = 0;
+	private float shooterAngle = 90.0f;
 
 	void Start () {
 		positiveInputTolerance = deadZoneSize;
@@ -94,7 +95,11 @@ public class MyPlayerController : MonoBehaviour {
 			// and use -1 for z here...
 			// note to self: learn 2d physics
 			// works but jumpy
-			transform.rotation = Quaternion.AngleAxis (90.0f - angle, new Vector3 (0,0,-1));
+			//transform.rotation = Quaternion.AngleAxis (90.0f - angle, new Vector3 (0,0,-1));
+			// rm stupid orbital rotation
+			//transform.rotation = Quaternion.AngleAxis (0.0f - angle, new Vector3 (0,0,-1));
+			//transform.rotation = Quaternion.AngleAxis (0.0f - angle, new Vector3 (0,0,-1));
+			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler(new Vector3(0.0f, 0.0f, angle)), 0.1f);
 
 			// this looks cool, but is not rotating along the correct axis. also, it seems jumpy too...
 			// maybe we need to be in FixedUpdate, or we need to manually ease this somehow...
