@@ -99,6 +99,9 @@ public class MyPlayerController : MonoBehaviour {
 			// rm stupid orbital rotation
 			//transform.rotation = Quaternion.AngleAxis (0.0f - angle, new Vector3 (0,0,-1));
 			//transform.rotation = Quaternion.AngleAxis (0.0f - angle, new Vector3 (0,0,-1));
+
+			// should this be in FixedUpdate or what?
+			// should the speed, here, 0.1f, me multiplied by Time.time or Time.deltaTime?
 			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler(new Vector3(0.0f, 0.0f, angle)), 0.1f);
 
 			// this looks cool, but is not rotating along the correct axis. also, it seems jumpy too...
