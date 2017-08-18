@@ -7,6 +7,9 @@ public class MyPlayerController : MonoBehaviour {
 	public float movementSpeed = 5.0f;
 
 	private Rigidbody2D body;
+	private GameObject svgSorter;
+	private GameObject shooter = null;
+
 	private float positiveInputTolerance;
 	private float negativeInputTolerance;
 	private float osxFirstUseTriggerTolerance = 0.1f;
@@ -14,12 +17,21 @@ public class MyPlayerController : MonoBehaviour {
 	private Vector2 movementUnit = new Vector2 ();
 	private int datAngle = 0;
 	private float shooterAngle = 90.0f;
+	private bool shootAvailable = true;
+	private bool leftTriggerPressReleaseCycleNeverCompleted = true;
+	private bool toggleShooterFeel = false;
 
 	void Start () {
 		positiveInputTolerance = deadZoneSize;
 		negativeInputTolerance = positiveInputTolerance * -1;
 		body = GetComponent<Rigidbody2D> ();
+		svgSorter = (GameObject) transform.Find("SvgSorter").gameObject;
 
+		if (svgSorter) {
+			// change player_shooter_pos name when it is changed into an object with white (no?) fill and stroke
+			shooter = (GameObject) svgSorter.transform.Find("player_shooter_pos").gameObject;
+
+		}
 	}
 
 	void FixedUpdate () {
@@ -119,20 +131,82 @@ public class MyPlayerController : MonoBehaviour {
 
 		}
 
-//		if (Input.GetAxis ("LeftTrigger") > 0.3f) 
-		if (Input.GetAxis ("LeftTrigger") > positiveInputTolerance) {
-			// we are getting a lot of input here.
-			// if we toggle the color every time this branch is entered,
-			// it will flutter
-			// needs debouncing
-			//Debug.Log ("left trigger!");
-			Debug.Log(Input.GetAxis("LeftTrigger"));
+		// if on OSX, if the trigger has never been pressed, when it is completely open,
+		// it registers as a 0
+		// after it has been used at least once,
+		// completely open is a -.382716 on this machine
+		// and fully pressed is a .382716 this could be
+		// i am almost positive that this is different on win/linux. cool.
+		// its possible that the numbers are extra weird because of my personal
+		// controller config in unity's project settings.
+		// TODO: look into this
 
+		float leftTriggerInput = Input.GetAxis ("LeftTrigger");
+
+		if (leftTriggerPressReleaseCycleNeverCompleted) {
+			if (shootAvailable) {
+				if (leftTriggerInput > 0) {
+					Debug.Log ("first shot fired");
+					shootAvailable = false;
+					toggleShooterFeel = true;
+
+				}
+			} else {
+				if (leftTriggerInput == 0 || leftTriggerInput < -0.3f) {
+					shootAvailable = true;
+					leftTriggerPressReleaseCycleNeverCompleted = false;
+
+				}
+			}
+		} else {
+			if (shootAvailable) {
+				if (leftTriggerInput > 0.3f) {
+					Debug.Log ("shot fired");
+					shootAvailable = false;
+					toggleShooterFeel = true;
+
+				}
+			} else {
+				if (leftTriggerInput < -0.3f) {
+					shootAvailable = true;
+
+				}
+			}
 		}
+
 		// probably must use white for the stroke and fill of orbital
 		// then apply color manually
 		// neg: #C66174FF
+		// 		198 97 116
 		// pos: #4C71B9FF
+		//		76 113 185
+		if (toggleShooterFeel) {
+			toggleShooterFeel = false;
+
+			Color negFeelsColor = new Color(198.0f/255.0f, 97.0f/255.0f, 116.0f/255.0f);
+			Color posFeelsColor = new Color(76.0f/255.0f, 113.0f/255.0f, 185.0f/255.0f);
+
+			if (shooter) {
+				SVGImporter.SVGRenderer shooterSVGRenderer = shooter.GetComponent<SVGImporter.SVGRenderer> ();
+
+				if (shooterSVGRenderer) {
+					Color currentColor = shooterSVGRenderer.color;
+					int r = Mathf.RoundToInt(255.0f * currentColor.r);
+					int g = Mathf.RoundToInt(255.0f * currentColor.g);
+					int b = Mathf.RoundToInt(255.0f * currentColor.b);
+					int a = Mathf.RoundToInt(255.0f * currentColor.a);
+
+
+					// Lerp that shit IRL!
+
+					// its going to be white until we fix it...
+					if (r == 255 && g == 255 && a == 255) {
+						shooterSVGRenderer.color = negFeelsColor;
+
+					}
+				}
+			}
+		}
 
 
 		// should this be in FixedUpdate or what??
