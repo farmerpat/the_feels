@@ -9,6 +9,8 @@ public class MyPlayerController : MonoBehaviour {
 	private Rigidbody2D body;
 	private float positiveInputTolerance;
 	private float negativeInputTolerance;
+	private float osxFirstUseTriggerTolerance = 0.1f;
+	private float osxTriggerTolerance = 0.1f;
 	private Vector2 movementUnit = new Vector2 ();
 	private int datAngle = 0;
 	private float shooterAngle = 90.0f;
@@ -108,7 +110,29 @@ public class MyPlayerController : MonoBehaviour {
 			// maybe we need to be in FixedUpdate, or we need to manually ease this somehow...
 			//transform.eulerAngles = new Vector3 (transform.eulerAngles.x, angle, transform.eulerAngles.z);
 
+			/*
+			 * looks like I can just change the color of the shooter orbital, so there won't be two assets to maintain
+			 *
+			 *  consider using SVG colliders
+			 * 
+			 */
+
 		}
+
+//		if (Input.GetAxis ("LeftTrigger") > 0.3f) 
+		if (Input.GetAxis ("LeftTrigger") > positiveInputTolerance) {
+			// we are getting a lot of input here.
+			// if we toggle the color every time this branch is entered,
+			// it will flutter
+			// needs debouncing
+			//Debug.Log ("left trigger!");
+			Debug.Log(Input.GetAxis("LeftTrigger"));
+
+		}
+		// probably must use white for the stroke and fill of orbital
+		// then apply color manually
+		// neg: #C66174FF
+		// pos: #4C71B9FF
 
 
 		// should this be in FixedUpdate or what??
