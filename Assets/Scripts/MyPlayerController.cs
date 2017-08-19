@@ -29,7 +29,7 @@ public class MyPlayerController : MonoBehaviour {
 
 		if (svgSorter) {
 			// change player_shooter_pos name when it is changed into an object with white (no?) fill and stroke
-			shooter = (GameObject) svgSorter.transform.Find("player_shooter_pos").gameObject;
+			shooter = (GameObject) svgSorter.transform.Find("player_shooter").gameObject;
 
 		}
 	}
@@ -146,7 +146,7 @@ public class MyPlayerController : MonoBehaviour {
 		if (leftTriggerPressReleaseCycleNeverCompleted) {
 			if (shootAvailable) {
 				if (leftTriggerInput > 0) {
-					Debug.Log ("first shot fired");
+//					Debug.Log ("first shot fired");
 					shootAvailable = false;
 					toggleShooterFeel = true;
 
@@ -161,7 +161,7 @@ public class MyPlayerController : MonoBehaviour {
 		} else {
 			if (shootAvailable) {
 				if (leftTriggerInput > 0.3f) {
-					Debug.Log ("shot fired");
+//					Debug.Log ("shot fired");
 					shootAvailable = false;
 					toggleShooterFeel = true;
 
@@ -183,31 +183,37 @@ public class MyPlayerController : MonoBehaviour {
 		if (toggleShooterFeel) {
 			toggleShooterFeel = false;
 
-			Color negFeelsColor = new Color(198.0f/255.0f, 97.0f/255.0f, 116.0f/255.0f);
-			Color posFeelsColor = new Color(76.0f/255.0f, 113.0f/255.0f, 185.0f/255.0f);
+			Color negFeelsColor = new Color(198.0f/255.0f, 97.0f/255.0f, 116.0f/255.0f, 1);
+			Color posFeelsColor = new Color(76.0f/255.0f, 113.0f/255.0f, 185.0f/255.0f, 1);
 
 			if (shooter) {
 				SVGImporter.SVGRenderer shooterSVGRenderer = shooter.GetComponent<SVGImporter.SVGRenderer> ();
 
 				if (shooterSVGRenderer) {
+					// a flag instead of all this math is a better idea
 					Color currentColor = shooterSVGRenderer.color;
 					int r = Mathf.RoundToInt(255.0f * currentColor.r);
 					int g = Mathf.RoundToInt(255.0f * currentColor.g);
 					int b = Mathf.RoundToInt(255.0f * currentColor.b);
 					int a = Mathf.RoundToInt(255.0f * currentColor.a);
 
-
 					// Lerp that shit IRL!
+					// to lerp this, we will have to keep track of which color we are
+					// supposed to be switching to outside of this trigger block,
+					// and lerp by the correct amount if we haven't reached that color
 
 					// its going to be white until we fix it...
-					if (r == 255 && g == 255 && a == 255) {
+					if (r == 76 && g == 113 && b == 185) {
 						shooterSVGRenderer.color = negFeelsColor;
+//						shooterSVGRenderer.color = Color.Lerp(shooterSVGRenderer.color, negFeelsColor, 0.5f);
+
+					} else {
+						shooterSVGRenderer.color = posFeelsColor;
 
 					}
 				}
 			}
 		}
-
 
 		// should this be in FixedUpdate or what??
 		body.AddForce (movementUnit * movementSpeed);
