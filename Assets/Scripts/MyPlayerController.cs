@@ -20,6 +20,8 @@ public class MyPlayerController : MonoBehaviour {
 	private bool shootAvailable = true;
 	private bool leftTriggerPressReleaseCycleNeverCompleted = true;
 	private bool toggleShooterFeel = false;
+	private bool changingShooterColor = false;
+	private Color shooterColorToBecome;
 
 	void Start () {
 		positiveInputTolerance = deadZoneSize;
@@ -182,6 +184,7 @@ public class MyPlayerController : MonoBehaviour {
 		//		76 113 185
 		if (toggleShooterFeel) {
 			toggleShooterFeel = false;
+			changingShooterColor = true;
 
 			Color negFeelsColor = new Color(198.0f/255.0f, 97.0f/255.0f, 116.0f/255.0f, 1);
 			Color posFeelsColor = new Color(76.0f/255.0f, 113.0f/255.0f, 185.0f/255.0f, 1);
@@ -197,20 +200,40 @@ public class MyPlayerController : MonoBehaviour {
 					int b = Mathf.RoundToInt(255.0f * currentColor.b);
 					int a = Mathf.RoundToInt(255.0f * currentColor.a);
 
-					// Lerp that shit IRL!
-					// to lerp this, we will have to keep track of which color we are
-					// supposed to be switching to outside of this trigger block,
-					// and lerp by the correct amount if we haven't reached that color
-
+					// we should have a variable that holds the name of the current color state,
+					// because if player tries to change color while lerping, it won't do
 					// its going to be white until we fix it...
 					if (r == 76 && g == 113 && b == 185) {
-						shooterSVGRenderer.color = negFeelsColor;
-//						shooterSVGRenderer.color = Color.Lerp(shooterSVGRenderer.color, negFeelsColor, 0.5f);
+						shooterColorToBecome = negFeelsColor;
 
 					} else {
-						shooterSVGRenderer.color = posFeelsColor;
+						shooterColorToBecome = posFeelsColor;
 
 					}
+				}
+			}
+		}
+
+		if (changingShooterColor) {
+			// TODO:
+			// we can't test if shooterColorToBecome is null or set it to null because
+			// unity complains.  figure out a way around this, so we aren't assuming
+			// blindly that shooterColorToBecome is available.
+
+			// see about not duplicating this (it appears above)
+			SVGImporter.SVGRenderer shooterSVGRenderer = shooter.GetComponent<SVGImporter.SVGRenderer> ();
+			if (shooterSVGRenderer) {
+				Color currentColor = shooterSVGRenderer.color;
+
+				if (currentColor.r != shooterColorToBecome.r ||
+				    currentColor.g != shooterColorToBecome.g ||
+				    currentColor.b != shooterColorToBecome.b
+				) {
+					shooterSVGRenderer.color = Color.Lerp (shooterSVGRenderer.color, shooterColorToBecome, 0.02f);
+
+				} else {
+					changingShooterColor = false;
+
 				}
 			}
 		}
