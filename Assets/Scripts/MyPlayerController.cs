@@ -81,24 +81,56 @@ public class MyPlayerController : MonoBehaviour {
 		// when player is at 0,0
 		// with a rotation of 0,0,0
 		// 	we want bullet to spawn at 2.19,0
+		// so the bullet is supposed to spawn a distance of 2.19 from player's origin
+		// the hypotenuse has a length of 2.19
+		// in quadrant I:
+		// y = 2.19 * sin(theta)
+		// x = 2.19 * cos(theta)
 
 		// if we're in pos shoot mode, which doesn't exist yet...
 		posBullet = (GameObject)Instantiate(Resources.Load("PosBullet"));
 
-		// assume player is at 0,0 for initial testing
-		posBullet.transform.position = new Vector3(2.19f, 0.0f);
-
-//			Quaternion rot = Quaternion.AngleAxis(45,Vector3.right);
-//			Vector3 shootVector = Vector3.forward;
-			// that's a local direction vector that points in forward direction but also 45 upwards.
-//			shootVector *= rot;
-
+		Vector3 playerOrigin = transform.position;
+		float spawnPointDistFromPlayerOrigin = 2.19f;
 		float angle = transform.rotation.eulerAngles.z;
+		float bulletXPos = 0.0f;
+		float bulletYPos = 0.0f;
+		float theta = 0.0f;
+
+		if (angle >= 0.0 && angle <= 90.0) {
+			// quadrant I
+			theta = angle;
+			bulletYPos = 2.19f * Mathf.Sin (Mathf.Deg2Rad * theta);
+			bulletXPos = 2.19f * Mathf.Cos (Mathf.Deg2Rad * theta);
+
+		} else if (angle > 90.0 && angle <= 180.0) {
+			// quadrant II
+			theta = 180.0f - angle;
+			bulletYPos = 2.19f * Mathf.Sin (Mathf.Deg2Rad * theta);
+			bulletXPos = -1.0f * (2.19f * Mathf.Cos (Mathf.Deg2Rad * theta));
+
+		} else if (angle > 180.0f && angle <= 270.0f) {
+			// quadrant III
+			theta = 270.0f - angle;
+			bulletYPos = -1.0f * (2.19f * Mathf.Cos (Mathf.Deg2Rad * theta));
+			bulletXPos = -1.0f * (2.19f * Mathf.Sin (Mathf.Deg2Rad * theta));
+
+		} else if (angle > 270.0f && angle <= 360.0f) {
+			// quadrant IV
+			theta = 360.0f - angle;
+			bulletYPos = -1.0f * (2.19f * Mathf.Sin (Mathf.Deg2Rad * theta));
+			bulletXPos = 2.19f * Mathf.Cos (Mathf.Deg2Rad * theta);
+
+		}
+
+		bulletXPos += playerOrigin.x;
+		bulletYPos += playerOrigin.y;
+
+		posBullet.transform.position = new Vector3(bulletXPos, bulletYPos);
+
 		Quaternion rot = Quaternion.AngleAxis(angle,Vector3.forward);
 
-		// that's a local direction vector that points in forward direction but also 45 upwards.
-
-		// might be able to skip that crap above since transform.rotation might already be the Quaternion we want
+		// might be able to skip the calculation above since transform.rotation might already be the Quaternion we want
 		Vector3 bulletMovementUnit = rot * Vector3.right;
 		posBullet.GetComponent<Rigidbody2D>().AddForce(bulletMovementUnit * 100.0f);
 
