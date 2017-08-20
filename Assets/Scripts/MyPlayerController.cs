@@ -73,6 +73,12 @@ public class MyPlayerController : MonoBehaviour {
 		return pred;
 	}
 
+	void shoot () {
+		// when player is at 0,0
+		// with a rotation of 0,0,0
+		// 	we want bullet to spawn at 2.19,0
+	}
+
 	void Update () {
 		// https://blogs.msdn.microsoft.com/nathalievangelist/2014/12/16/joystick-input-in-unity-using-xbox360-controller/
 		// http://wiki.unity3d.com/index.php?title=Xbox360Controller

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Aura
   - Orbital
+  - PosBullet
+  - NegBullet
   layers:
   - Default
   - TransparentFX
