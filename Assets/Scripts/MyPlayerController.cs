@@ -9,6 +9,8 @@ public class MyPlayerController : MonoBehaviour {
 	private Rigidbody2D body;
 	private GameObject svgSorter;
 	private GameObject shooter = null;
+	private GameObject posBullet;
+	private GameObject negBullet;
 
 	private float positiveInputTolerance;
 	private float negativeInputTolerance;
@@ -17,8 +19,10 @@ public class MyPlayerController : MonoBehaviour {
 	private Vector2 movementUnit = new Vector2 ();
 	private int datAngle = 0;
 	private float shooterAngle = 90.0f;
-	private bool shootAvailable = true;
+	private bool shooterSwapAvailable = true;
+	private bool fireAvailable = true;
 	private bool leftTriggerPressReleaseCycleNeverCompleted = true;
+	private bool rightTriggerPressReleaseCycleNeverCompleted = true;
 	private bool toggleShooterFeel = false;
 	private bool changingShooterColor = false;
 	private Color shooterColorToBecome;
@@ -73,10 +77,35 @@ public class MyPlayerController : MonoBehaviour {
 		return pred;
 	}
 
-	void shoot () {
+	void fireBullet () {
 		// when player is at 0,0
 		// with a rotation of 0,0,0
 		// 	we want bullet to spawn at 2.19,0
+
+		// if we're in pos shoot mode, which doesn't exist yet...
+		posBullet = (GameObject)Instantiate(Resources.Load("PosBullet"));
+
+		// assume player is at 0,0 for initial testing
+		posBullet.transform.position = new Vector3(2.19f, 0.0f);
+
+//			Quaternion rot = Quaternion.AngleAxis(45,Vector3.right);
+//			Vector3 shootVector = Vector3.forward;
+			// that's a local direction vector that points in forward direction but also 45 upwards.
+//			shootVector *= rot;
+
+		float angle = transform.rotation.eulerAngles.z;
+		Quaternion rot = Quaternion.AngleAxis(angle,Vector3.forward);
+
+		// that's a local direction vector that points in forward direction but also 45 upwards.
+
+		// might be able to skip that crap above since transform.rotation might already be the Quaternion we want
+		Vector3 bulletMovementUnit = rot * Vector3.right;
+		posBullet.GetComponent<Rigidbody2D>().AddForce(bulletMovementUnit * 100.0f);
+
+
+		// create a bullet script with a fire method, add it to PosBullet and NegBullet
+		// prefabs and call that instead
+		// it can accept player's transform and shot speed as arguments
 	}
 
 	void Update () {
@@ -126,15 +155,9 @@ public class MyPlayerController : MonoBehaviour {
 			// should the speed, here, 0.1f, me multiplied by Time.time or Time.deltaTime?
 			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler(new Vector3(0.0f, 0.0f, angle)), 0.1f);
 
-			// this looks cool, but is not rotating along the correct axis. also, it seems jumpy too...
-			// maybe we need to be in FixedUpdate, or we need to manually ease this somehow...
-			//transform.eulerAngles = new Vector3 (transform.eulerAngles.x, angle, transform.eulerAngles.z);
 
 			/*
-			 * looks like I can just change the color of the shooter orbital, so there won't be two assets to maintain
-			 *
 			 *  consider using SVG colliders
-			 * 
 			 */
 
 		}
@@ -152,31 +175,60 @@ public class MyPlayerController : MonoBehaviour {
 		float leftTriggerInput = Input.GetAxis ("LeftTrigger");
 
 		if (leftTriggerPressReleaseCycleNeverCompleted) {
-			if (shootAvailable) {
+			if (shooterSwapAvailable) {
 				if (leftTriggerInput > 0) {
-//					Debug.Log ("first shot fired");
-					shootAvailable = false;
+					shooterSwapAvailable = false;
 					toggleShooterFeel = true;
 
 				}
 			} else {
 				if (leftTriggerInput == 0 || leftTriggerInput < -0.3f) {
-					shootAvailable = true;
+					shooterSwapAvailable = true;
 					leftTriggerPressReleaseCycleNeverCompleted = false;
 
 				}
 			}
 		} else {
-			if (shootAvailable) {
+			if (shooterSwapAvailable) {
 				if (leftTriggerInput > 0.3f) {
-//					Debug.Log ("shot fired");
-					shootAvailable = false;
+					shooterSwapAvailable = false;
 					toggleShooterFeel = true;
 
 				}
 			} else {
 				if (leftTriggerInput < -0.3f) {
-					shootAvailable = true;
+					shooterSwapAvailable = true;
+
+				}
+			}
+		}
+
+		float rightTriggerInput = Input.GetAxis ("RightTrigger");
+
+		if (rightTriggerPressReleaseCycleNeverCompleted) {
+			if (fireAvailable) {
+				if (rightTriggerInput > 0) {
+					fireAvailable = false;
+					fireBullet();
+
+				}
+			} else {
+				if (rightTriggerInput == 0 || rightTriggerInput < -0.3f) {
+					fireAvailable = true;
+					rightTriggerPressReleaseCycleNeverCompleted = false;
+
+				}
+			}
+		} else {
+			if (fireAvailable) {
+				if (rightTriggerInput > 0.3f) {
+					fireAvailable = false;
+					fireBullet();
+
+				}
+			} else {
+				if (rightTriggerInput < -0.3f) {
+					fireAvailable = true;
 
 				}
 			}

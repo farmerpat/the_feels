@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 33490038521034600}
   - component: {fileID: 23142457616535560}
   - component: {fileID: 58131234301310912}
+  - component: {fileID: 50328774066218680}
   m_Layer: 0
   m_Name: PosBullet
   m_TagString: PosBullet
@@ -82,6 +83,26 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1210755254589434}
   m_Mesh: {fileID: 43686859960953314, guid: 17631ca8bdae1410f9ec78e9c1d96bc2, type: 2}
+--- !u!50 &50328774066218680
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1210755254589434}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &58131234301310912
 CircleCollider2D:
   m_ObjectHideFlags: 1
