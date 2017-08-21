@@ -296,8 +296,8 @@ public class MyPlayerController : MonoBehaviour {
 			//
 			// consider gradually changing color of bullets too
 
-			// see about not duplicating this (it appears above)
 			SVGImporter.SVGRenderer shooterSVGRenderer = shooter.GetComponent<SVGImporter.SVGRenderer> ();
+
 			if (shooterSVGRenderer) {
 				Color currentColor = shooterSVGRenderer.color;
 
