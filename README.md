@@ -39,3 +39,5 @@ Thoughts
 --------
 * consider making the controls for the terrestrial shooting arm the same as those for
   the orbital
+* consider a head-detatching, expanding, morphing animation for the ascention following
+  terrestrial level completion
