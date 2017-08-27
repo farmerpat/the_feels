@@ -1,0 +1,674 @@
+fileFormatVersion: 2
+guid: c387e2a0906144e4c8661239a9ef6539
+timeCreated: 1503815771
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: HeroLeftIdleNeg1
+    21300002: HeroLeftIdleNeg2
+    21300004: HeroLeftIdlePos1
+    21300006: HeroLeftIdlePos2
+    21300008: HeroLeftJumpNeg1
+    21300010: HeroLeftJumpNeg2
+    21300012: HeroLeftJumpNeg3
+    21300014: HeroLeftJumpNeg4
+    21300016: HeroLeftJumpNeg5
+    21300018: HeroLeftJumpPos1
+    21300020: HeroLeftJumpPos2
+    21300022: HeroLeftJumpPos3
+    21300024: HeroLeftJumpPos4
+    21300026: HeroLeftJumpPos5
+    21300028: HeroLeftShootNeg
+    21300030: HeroLeftShootPos
+    21300032: HeroRightIdleNeg1
+    21300034: HeroRightIdleNeg2
+    21300036: HeroRightIdlePos1
+    21300038: HeroRightIdlePos2
+    21300040: HeroRightJumpNeg1
+    21300042: HeroRightJumpNeg2
+    21300044: HeroRightJumpNeg3
+    21300046: HeroRightJumpNeg4
+    21300048: HeroRightJumpNeg5
+    21300050: HeroRightJumpPos1
+    21300052: HeroRightJumpPos2
+    21300054: HeroRightJumpPos3
+    21300056: HeroRightJumpPos4
+    21300058: HeroRightJumpPos5
+    21300060: HeroRightShootNeg
+    21300062: HeroRightShootPos
+    21300064: HeroRightWalkNeg1
+    21300066: HeroRightWalkNeg2
+    21300068: HeroRightWalkNeg3
+    21300070: HeroRightWalkNeg4
+    21300072: HeroRightWalkPos1
+    21300074: HeroRightWalkPos2
+    21300076: HeroRightWalkPos3
+    21300078: HeroRightWalkPos4
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HeroLeftIdleNeg1
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 35
+        width: 20
+        height: 32
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroLeftIdleNeg2
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 35
+        width: 20
+        height: 32
+      alignment: 9
+      pivot: {x: 0.6, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroLeftIdlePos1
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 35
+        width: 22
+        height: 32
+      alignment: 9
+      pivot: {x: 0.59090906, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroLeftIdlePos2
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 1
+        width: 20
+        height: 32
+      alignment: 9
+      pivot: {x: 0.6, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroLeftJumpNeg1
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 35
+        width: 20
+        height: 32
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroLeftJumpNeg2
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 35
+        width: 23
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5652174, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroLeftJumpNeg3
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 1
+        width: 20
+        height: 32
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroLeftJumpNeg4
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 35
+        width: 20
+        height: 32
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroLeftJumpNeg5
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 1
+        width: 20
+        height: 32
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroLeftJumpPos1
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 35
+        width: 20
+        height: 32
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroLeftJumpPos2
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 1
+        width: 23
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5652174, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroLeftJumpPos3
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 1
+        width: 20
+        height: 32
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroLeftJumpPos4
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 35
+        width: 20
+        height: 32
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroLeftJumpPos5
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 1
+        width: 20
+        height: 32
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroLeftShootNeg
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 35
+        width: 20
+        height: 32
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroLeftShootPos
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 1
+        width: 20
+        height: 32
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightIdleNeg1
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 35
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightIdleNeg2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 35
+        width: 26
+        height: 32
+      alignment: 9
+      pivot: {x: 0.3846154, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightIdlePos1
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 1
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightIdlePos2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 26
+        height: 32
+      alignment: 9
+      pivot: {x: 0.3846154, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightJumpNeg1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 35
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightJumpNeg2
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 1
+        width: 21
+        height: 32
+      alignment: 9
+      pivot: {x: 0.42857143, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightJumpNeg3
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 1
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightJumpNeg4
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 35
+        width: 26
+        height: 32
+      alignment: 9
+      pivot: {x: 0.42307693, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightJumpNeg5
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 35
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightJumpPos1
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 1
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightJumpPos2
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 1
+        width: 21
+        height: 32
+      alignment: 9
+      pivot: {x: 0.42857143, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightJumpPos3
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 35
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightJumpPos4
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1
+        width: 26
+        height: 32
+      alignment: 9
+      pivot: {x: 0.42307693, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightJumpPos5
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 1
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightShootNeg
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 35
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightShootPos
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightWalkNeg1
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 35
+        width: 21
+        height: 32
+      alignment: 9
+      pivot: {x: 0.42857143, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightWalkNeg2
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 35
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightWalkNeg3
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 1
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightWalkNeg4
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 35
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightWalkPos1
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 1
+        width: 21
+        height: 32
+      alignment: 9
+      pivot: {x: 0.42857143, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightWalkPos2
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 1
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightWalkPos3
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 35
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: HeroRightWalkPos4
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 1
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
