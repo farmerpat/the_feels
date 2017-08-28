@@ -15,11 +15,19 @@ public class TerrestrialPlayerController : MonoBehaviour {
 	private bool jumpButtonPressed = false;
 	private bool jumpButtonReleased = false;
 	private bool jumpAvailable = true;
+	private Animator playerAnimator;
+
+	// grab the animator controller and fire the trigger when start moving right, etc
+	// split up jump anim to jump init and jump land or something
 
 	void Start () {
 		positiveInputTolerance = deadZoneSize;
 		negativeInputTolerance = positiveInputTolerance * -1;
 		body = GetComponent<Rigidbody2D> ();	
+		playerAnimator = GetComponent<Animator> ();
+		Debug.Log (playerAnimator);
+		AnimatorStateInfo stateInfo = playerAnimator.GetCurrentAnimatorStateInfo (0);
+		Debug.Log (stateInfo);
 
 	}
 	
@@ -45,6 +53,7 @@ public class TerrestrialPlayerController : MonoBehaviour {
 			if (Input.GetButton ("Jump")) {
 				jumpAvailable = false;
 				movementUnit.y = 1;
+				playerAnimator.SetTrigger ("PlayerJumpRightPos");
 
 			}
 		} else {
