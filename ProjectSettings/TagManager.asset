@@ -8,6 +8,7 @@ TagManager:
   - Orbital
   - PosBullet
   - NegBullet
+  - TerrestrialSurface
   layers:
   - Default
   - TransparentFX

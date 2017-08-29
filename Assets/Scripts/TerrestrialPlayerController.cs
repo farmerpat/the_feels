@@ -42,9 +42,21 @@ public class TerrestrialPlayerController : MonoBehaviour {
 			// use maxMovementSpeed to limit speed
 			// will probably need a speed counter or something
 			movementUnit.x = 1;
+			playerAnimator.SetTrigger ("PlayerWalkRightPos");
 
 		} else if (Input.GetAxis ("HorizontalLeft") < negativeInputTolerance) {
+			// turn around so forth.
+			// use a flag to keep track of l/r direction
+			// use functions to set the animation trigger, so the caller doesn't have
+			// to care about the direction...like
+			// this.setAnimation("idle");
+			// this.setAnimation("walk");
+			// this.setAnimation("jump");
+			// this.setAnimation("etc");
 			movementUnit.x = -1;
+
+		} else {
+			playerAnimator.SetTrigger ("PlayerIdleRightPos");
 
 		}
 
@@ -67,5 +79,19 @@ public class TerrestrialPlayerController : MonoBehaviour {
 		movementUnit.y *= jumpSpeed;
 		// should this be in FixedUpdate or what??
 		body.AddForce (movementUnit);
+	}
+
+	void OnCollisionEnter2D (Collision2D other) {
+		// note the player is colliding with three blocks at a time due to the size of hiz hitbox
+		// compared with theirs.  it might make more sense to have large hitboxes surrounding collections
+		// of blocks.  that is what will happen when using a tileset anway.  The set will
+		// get dropped in like a bg, and the collision boxes will added afterwards
+		// Debug.Log (other.gameObject.name);
+		Debug.Log(other.gameObject.tag);
+		if (other.gameObject.tag == "TerrestrialSurface") {
+			// also make sure we hit on the bottom?
+			playerAnimator.SetTrigger ("PlayerIdleRightPos");
+
+		}
 	}
 }

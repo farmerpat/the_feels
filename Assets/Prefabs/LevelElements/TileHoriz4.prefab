@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4930270530807982}
   - component: {fileID: 212038535339852752}
-  - component: {fileID: 61942791157358520}
   m_Layer: 0
   m_Name: Block (8)
   m_TagString: Untagged
@@ -37,7 +36,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4929298487566336}
   - component: {fileID: 212920979990908364}
-  - component: {fileID: 61333520329490010}
   m_Layer: 0
   m_Name: Block (9)
   m_TagString: Untagged
@@ -53,9 +51,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4696486874465652}
+  - component: {fileID: 61884847292630828}
   m_Layer: 0
   m_Name: TileHoriz4
-  m_TagString: Untagged
+  m_TagString: TerrestrialSurface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +68,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4708962257355632}
   - component: {fileID: 212412843280682972}
-  - component: {fileID: 61521725718430850}
   m_Layer: 0
   m_Name: Block (11)
   m_TagString: Untagged
@@ -86,7 +84,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4138825354092982}
   - component: {fileID: 212005613102990384}
-  - component: {fileID: 61272207493290286}
   m_Layer: 0
   m_Name: Block (10)
   m_TagString: Untagged
@@ -163,105 +160,30 @@ Transform:
   m_Father: {fileID: 4696486874465652}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61272207493290286
+--- !u!61 &61884847292630828
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1997796036298686}
+  m_GameObject: {fileID: 1304815726549412}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 1.615, y: -1.19}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.33, y: 0.32}
-    newSize: {x: 0.33, y: 0.32}
-    adaptiveTilingThreshold: 0.5
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.33, y: 0.32}
-  m_EdgeRadius: 0
---- !u!61 &61333520329490010
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1245811647511776}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.33, y: 0.32}
-    newSize: {x: 0.33, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.33, y: 0.32}
-  m_EdgeRadius: 0
---- !u!61 &61521725718430850
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1576609927999078}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.33, y: 0.32}
-    newSize: {x: 0.33, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.33, y: 0.32}
-  m_EdgeRadius: 0
---- !u!61 &61942791157358520
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1221990875732032}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.33, y: 0.32}
-    newSize: {x: 0.33, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.33, y: 0.32}
+  m_Size: {x: 1.28, y: 0.32}
   m_EdgeRadius: 0
 --- !u!212 &212005613102990384
 SpriteRenderer:
