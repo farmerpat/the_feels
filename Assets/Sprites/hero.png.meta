@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c387e2a0906144e4c8661239a9ef6539
-timeCreated: 1503815771
+guid: d18c4810b1f6d4245acd40c98fe4c40c
+timeCreated: 1503982449
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -110,12 +110,12 @@ TextureImporter:
       name: HeroLeftIdleNeg1
       rect:
         serializedVersion: 2
-        x: 337
-        y: 35
+        x: 323
+        y: 1
         width: 20
         height: 32
       alignment: 9
-      pivot: {x: 0.65, y: 0.5}
+      pivot: {x: 0.6, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -124,8 +124,8 @@ TextureImporter:
       name: HeroLeftIdleNeg2
       rect:
         serializedVersion: 2
-        x: 359
-        y: 35
+        x: 399
+        y: 1
         width: 20
         height: 32
       alignment: 9
@@ -138,12 +138,12 @@ TextureImporter:
       name: HeroLeftIdlePos1
       rect:
         serializedVersion: 2
-        x: 290
-        y: 35
+        x: 183
+        y: 1
         width: 22
         height: 32
       alignment: 9
-      pivot: {x: 0.59090906, y: 0.5}
+      pivot: {x: 0.54545456, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -152,8 +152,8 @@ TextureImporter:
       name: HeroLeftIdlePos2
       rect:
         serializedVersion: 2
-        x: 359
-        y: 1
+        x: 406
+        y: 35
         width: 20
         height: 32
       alignment: 9
@@ -166,12 +166,12 @@ TextureImporter:
       name: HeroLeftJumpNeg1
       rect:
         serializedVersion: 2
-        x: 381
-        y: 35
+        x: 367
+        y: 1
         width: 20
         height: 32
       alignment: 9
-      pivot: {x: 0.65, y: 0.5}
+      pivot: {x: 0.6, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -180,8 +180,8 @@ TextureImporter:
       name: HeroLeftJumpNeg2
       rect:
         serializedVersion: 2
-        x: 265
-        y: 35
+        x: 133
+        y: 1
         width: 23
         height: 32
       alignment: 9
@@ -194,7 +194,7 @@ TextureImporter:
       name: HeroLeftJumpNeg3
       rect:
         serializedVersion: 2
-        x: 381
+        x: 345
         y: 1
         width: 20
         height: 32
@@ -208,7 +208,7 @@ TextureImporter:
       name: HeroLeftJumpNeg4
       rect:
         serializedVersion: 2
-        x: 403
+        x: 486
         y: 35
         width: 20
         height: 32
@@ -222,8 +222,8 @@ TextureImporter:
       name: HeroLeftJumpNeg5
       rect:
         serializedVersion: 2
-        x: 403
-        y: 1
+        x: 508
+        y: 35
         width: 20
         height: 32
       alignment: 9
@@ -236,12 +236,12 @@ TextureImporter:
       name: HeroLeftJumpPos1
       rect:
         serializedVersion: 2
-        x: 425
-        y: 35
+        x: 487
+        y: 1
         width: 20
         height: 32
       alignment: 9
-      pivot: {x: 0.65, y: 0.5}
+      pivot: {x: 0.6, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -250,7 +250,7 @@ TextureImporter:
       name: HeroLeftJumpPos2
       rect:
         serializedVersion: 2
-        x: 265
+        x: 158
         y: 1
         width: 23
         height: 32
@@ -264,12 +264,12 @@ TextureImporter:
       name: HeroLeftJumpPos3
       rect:
         serializedVersion: 2
-        x: 425
+        x: 465
         y: 1
         width: 20
         height: 32
       alignment: 9
-      pivot: {x: 0.65, y: 0.5}
+      pivot: {x: 0.6, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -278,12 +278,12 @@ TextureImporter:
       name: HeroLeftJumpPos4
       rect:
         serializedVersion: 2
-        x: 447
+        x: 442
         y: 35
         width: 20
         height: 32
       alignment: 9
-      pivot: {x: 0.65, y: 0.5}
+      pivot: {x: 0.6, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -292,12 +292,12 @@ TextureImporter:
       name: HeroLeftJumpPos5
       rect:
         serializedVersion: 2
-        x: 447
-        y: 1
+        x: 464
+        y: 35
         width: 20
         height: 32
       alignment: 9
-      pivot: {x: 0.65, y: 0.5}
+      pivot: {x: 0.6, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -306,12 +306,12 @@ TextureImporter:
       name: HeroLeftShootNeg
       rect:
         serializedVersion: 2
-        x: 469
-        y: 35
+        x: 421
+        y: 1
         width: 20
         height: 32
       alignment: 9
-      pivot: {x: 0.65, y: 0.5}
+      pivot: {x: 0.6, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -320,12 +320,12 @@ TextureImporter:
       name: HeroLeftShootPos
       rect:
         serializedVersion: 2
-        x: 469
+        x: 443
         y: 1
         width: 20
         height: 32
       alignment: 9
-      pivot: {x: 0.65, y: 0.5}
+      pivot: {x: 0.6, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -334,7 +334,7 @@ TextureImporter:
       name: HeroRightIdleNeg1
       rect:
         serializedVersion: 2
-        x: 57
+        x: 246
         y: 35
         width: 24
         height: 32
@@ -349,11 +349,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 35
+        y: 1
         width: 26
         height: 32
       alignment: 9
-      pivot: {x: 0.3846154, y: 0.5}
+      pivot: {x: 0.42307693, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -362,8 +362,8 @@ TextureImporter:
       name: HeroRightIdlePos1
       rect:
         serializedVersion: 2
-        x: 57
-        y: 1
+        x: 219
+        y: 35
         width: 24
         height: 32
       alignment: 0
@@ -376,12 +376,12 @@ TextureImporter:
       name: HeroRightIdlePos2
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
+        x: 28
+        y: 35
         width: 26
         height: 32
       alignment: 9
-      pivot: {x: 0.3846154, y: 0.5}
+      pivot: {x: 0.42307693, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -390,7 +390,7 @@ TextureImporter:
       name: HeroRightJumpNeg1
       rect:
         serializedVersion: 2
-        x: 83
+        x: 273
         y: 35
         width: 24
         height: 32
@@ -404,12 +404,12 @@ TextureImporter:
       name: HeroRightJumpNeg2
       rect:
         serializedVersion: 2
-        x: 290
+        x: 253
         y: 1
         width: 21
         height: 32
       alignment: 9
-      pivot: {x: 0.42857143, y: 0.5}
+      pivot: {x: 0.47619048, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -418,8 +418,8 @@ TextureImporter:
       name: HeroRightJumpNeg3
       rect:
         serializedVersion: 2
-        x: 83
-        y: 1
+        x: 192
+        y: 35
         width: 24
         height: 32
       alignment: 0
@@ -432,7 +432,7 @@ TextureImporter:
       name: HeroRightJumpNeg4
       rect:
         serializedVersion: 2
-        x: 29
+        x: 1
         y: 35
         width: 26
         height: 32
@@ -446,7 +446,7 @@ TextureImporter:
       name: HeroRightJumpNeg5
       rect:
         serializedVersion: 2
-        x: 109
+        x: 84
         y: 35
         width: 24
         height: 32
@@ -460,8 +460,8 @@ TextureImporter:
       name: HeroRightJumpPos1
       rect:
         serializedVersion: 2
-        x: 109
-        y: 1
+        x: 111
+        y: 35
         width: 24
         height: 32
       alignment: 0
@@ -474,12 +474,12 @@ TextureImporter:
       name: HeroRightJumpPos2
       rect:
         serializedVersion: 2
-        x: 313
+        x: 230
         y: 1
         width: 21
         height: 32
       alignment: 9
-      pivot: {x: 0.42857143, y: 0.5}
+      pivot: {x: 0.47619048, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -488,7 +488,7 @@ TextureImporter:
       name: HeroRightJumpPos3
       rect:
         serializedVersion: 2
-        x: 135
+        x: 138
         y: 35
         width: 24
         height: 32
@@ -502,8 +502,8 @@ TextureImporter:
       name: HeroRightJumpPos4
       rect:
         serializedVersion: 2
-        x: 29
-        y: 1
+        x: 55
+        y: 35
         width: 26
         height: 32
       alignment: 9
@@ -516,8 +516,8 @@ TextureImporter:
       name: HeroRightJumpPos5
       rect:
         serializedVersion: 2
-        x: 135
-        y: 1
+        x: 326
+        y: 35
         width: 24
         height: 32
       alignment: 0
@@ -530,8 +530,8 @@ TextureImporter:
       name: HeroRightShootNeg
       rect:
         serializedVersion: 2
-        x: 161
-        y: 35
+        x: 81
+        y: 1
         width: 24
         height: 32
       alignment: 0
@@ -544,7 +544,7 @@ TextureImporter:
       name: HeroRightShootPos
       rect:
         serializedVersion: 2
-        x: 161
+        x: 107
         y: 1
         width: 24
         height: 32
@@ -558,8 +558,8 @@ TextureImporter:
       name: HeroRightWalkNeg1
       rect:
         serializedVersion: 2
-        x: 314
-        y: 35
+        x: 276
+        y: 1
         width: 21
         height: 32
       alignment: 9
@@ -572,8 +572,8 @@ TextureImporter:
       name: HeroRightWalkNeg2
       rect:
         serializedVersion: 2
-        x: 187
-        y: 35
+        x: 55
+        y: 1
         width: 24
         height: 32
       alignment: 0
@@ -586,8 +586,8 @@ TextureImporter:
       name: HeroRightWalkNeg3
       rect:
         serializedVersion: 2
-        x: 187
-        y: 1
+        x: 300
+        y: 35
         width: 24
         height: 32
       alignment: 0
@@ -600,7 +600,7 @@ TextureImporter:
       name: HeroRightWalkNeg4
       rect:
         serializedVersion: 2
-        x: 213
+        x: 353
         y: 35
         width: 24
         height: 32
@@ -614,7 +614,7 @@ TextureImporter:
       name: HeroRightWalkPos1
       rect:
         serializedVersion: 2
-        x: 336
+        x: 207
         y: 1
         width: 21
         height: 32
@@ -628,7 +628,7 @@ TextureImporter:
       name: HeroRightWalkPos2
       rect:
         serializedVersion: 2
-        x: 213
+        x: 29
         y: 1
         width: 24
         height: 32
@@ -642,7 +642,7 @@ TextureImporter:
       name: HeroRightWalkPos3
       rect:
         serializedVersion: 2
-        x: 239
+        x: 380
         y: 35
         width: 24
         height: 32
@@ -656,8 +656,8 @@ TextureImporter:
       name: HeroRightWalkPos4
       rect:
         serializedVersion: 2
-        x: 239
-        y: 1
+        x: 165
+        y: 35
         width: 24
         height: 32
       alignment: 0
