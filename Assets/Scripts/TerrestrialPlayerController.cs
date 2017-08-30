@@ -6,7 +6,7 @@ public class TerrestrialPlayerController : MonoBehaviour {
 	public float deadZoneSize = .1f;
 	public float movementSpeed = 5.0f;
 	public float jumpSpeed = 200.0f;
-	public float maxMovementSpeed = 20.0f;
+	public float maxMovementSpeed = 3.0f;
 
 	private Vector2 movementUnit = new Vector2 ();
 	private float positiveInputTolerance;
@@ -41,7 +41,12 @@ public class TerrestrialPlayerController : MonoBehaviour {
 		if (Input.GetAxis ("HorizontalLeft") > positiveInputTolerance) {
 			// use maxMovementSpeed to limit speed
 			// will probably need a speed counter or something
-			movementUnit.x = 1;
+			if (body.velocity.x <= maxMovementSpeed) {
+				movementUnit.x = 1;
+
+			}
+
+			// probably only have to do this if the animation isn't already running
 			playerAnimator.SetTrigger ("PlayerWalkRightPos");
 
 		} else if (Input.GetAxis ("HorizontalLeft") < negativeInputTolerance) {
@@ -75,6 +80,7 @@ public class TerrestrialPlayerController : MonoBehaviour {
 			}
 		}
 
+		Debug.Log (body.velocity.x);
 		movementUnit.x *= movementSpeed;
 		movementUnit.y *= jumpSpeed;
 		// should this be in FixedUpdate or what??
@@ -87,11 +93,16 @@ public class TerrestrialPlayerController : MonoBehaviour {
 		// of blocks.  that is what will happen when using a tileset anway.  The set will
 		// get dropped in like a bg, and the collision boxes will added afterwards
 		// Debug.Log (other.gameObject.name);
-		Debug.Log(other.gameObject.tag);
 		if (other.gameObject.tag == "TerrestrialSurface") {
 			// also make sure we hit on the bottom?
-			playerAnimator.SetTrigger ("PlayerIdleRightPos");
 
+			if (movementUnit.x == 0) {
+				playerAnimator.SetTrigger ("PlayerIdleRightPos");
+
+			} else if (movementUnit.x > 0) {
+				playerAnimator.SetTrigger ("PlayerIdleRightPos");
+
+			}
 		}
 	}
 }
