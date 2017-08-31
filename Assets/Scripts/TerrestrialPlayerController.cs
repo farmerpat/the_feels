@@ -67,11 +67,24 @@ public class TerrestrialPlayerController : MonoBehaviour {
 
 		if (jumpAvailable) {
 			// and player on solid surface
-			if (Input.GetButton ("Jump")) {
-				jumpAvailable = false;
-				movementUnit.y = 1;
-				playerAnimator.SetTrigger ("PlayerJumpRightPos");
+			// actually calculate this...
+			float raycastLen = 1.05f;
+			RaycastHit2D platformHit = Physics2D.Raycast (transform.position, Vector2.down, raycastLen, 1 << LayerMask.NameToLayer("Platforms"));
+			// this should hit
+//			Debug.DrawRay (transform.position, Vector3.down * raycastLen, Color.green, 30, false);
+//			Debug.DrawRay (transform.position, Vector3.right * raycastLen, Color.green, 30, false);
 
+			if (platformHit.collider != null) {
+//				Debug.Log (platformHit.collider.name);
+				if (platformHit.collider.CompareTag ("TerrestrialSurface")) {
+					if (Input.GetButton ("Jump")) {
+						jumpAvailable = false;
+						movementUnit.y = 1;
+
+						playerAnimator.SetTrigger ("PlayerJumpRightPos");
+
+					}
+				}
 			}
 		} else {
 			if (!Input.GetButton ("Jump")) {
@@ -80,12 +93,15 @@ public class TerrestrialPlayerController : MonoBehaviour {
 			}
 		}
 
-		Debug.Log (body.velocity.x);
 		movementUnit.x *= movementSpeed;
 		movementUnit.y *= jumpSpeed;
 		// should this be in FixedUpdate or what??
 		body.AddForce (movementUnit);
 	}
+
+//	void OnCollisionStay (Collision2D other) {
+
+//	}
 
 	void OnCollisionEnter2D (Collision2D other) {
 		// note the player is colliding with three blocks at a time due to the size of hiz hitbox
