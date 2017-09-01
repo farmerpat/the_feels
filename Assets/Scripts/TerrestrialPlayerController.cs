@@ -25,9 +25,9 @@ public class TerrestrialPlayerController : MonoBehaviour {
 		negativeInputTolerance = positiveInputTolerance * -1;
 		body = GetComponent<Rigidbody2D> ();	
 		playerAnimator = GetComponent<Animator> ();
-		Debug.Log (playerAnimator);
+//		Debug.Log (playerAnimator);
 		AnimatorStateInfo stateInfo = playerAnimator.GetCurrentAnimatorStateInfo (0);
-		Debug.Log (stateInfo);
+//		Debug.Log (stateInfo);
 
 	}
 	
@@ -46,9 +46,11 @@ public class TerrestrialPlayerController : MonoBehaviour {
 
 			}
 
-			// probably only have to do this if the animation isn't already running
-			playerAnimator.SetTrigger ("PlayerWalkRightPos");
+			if (this.IsOnGround ()) {
+				// probably only have to do this if the animation isn't already running
+//				playerAnimator.SetTrigger ("PlayerWalkRightPos");
 
+			}
 		} else if (Input.GetAxis ("HorizontalLeft") < negativeInputTolerance) {
 			// turn around so forth.
 			// use a flag to keep track of l/r direction
@@ -61,29 +63,25 @@ public class TerrestrialPlayerController : MonoBehaviour {
 			movementUnit.x = -1;
 
 		} else {
-			playerAnimator.SetTrigger ("PlayerIdleRightPos");
+			if (this.IsOnGround () && !this.IsMoving()) {
+//				playerAnimator.SetTrigger ("PlayerIdleRightPos");
 
+			}
 		}
 
 		if (jumpAvailable) {
-			// and player on solid surface
-			// actually calculate this...
-			float raycastLen = 1.05f;
-			RaycastHit2D platformHit = Physics2D.Raycast (transform.position, Vector2.down, raycastLen, 1 << LayerMask.NameToLayer("Platforms"));
-			// this should hit
-//			Debug.DrawRay (transform.position, Vector3.down * raycastLen, Color.green, 30, false);
-//			Debug.DrawRay (transform.position, Vector3.right * raycastLen, Color.green, 30, false);
+			if (this.IsOnGround ()) {
+				if (Input.GetButton ("Jump")) {
+					jumpAvailable = false;
+					movementUnit.y = 1;
 
-			if (platformHit.collider != null) {
-//				Debug.Log (platformHit.collider.name);
-				if (platformHit.collider.CompareTag ("TerrestrialSurface")) {
-					if (Input.GetButton ("Jump")) {
-						jumpAvailable = false;
-						movementUnit.y = 1;
+					// maybe i'll end up having to use separate triggers for transitions
+					// landing on the same state but coming from different states?
+					// for example, we can end up in walking coming from idle or from jmp
+					// this isn't being executed correctly. something seems jacked
+					// in the AnimatorController
+//					playerAnimator.SetTrigger ("PlayerJumpAscendingRightPos");
 
-						playerAnimator.SetTrigger ("PlayerJumpRightPos");
-
-					}
 				}
 			}
 		} else {
@@ -97,6 +95,46 @@ public class TerrestrialPlayerController : MonoBehaviour {
 		movementUnit.y *= jumpSpeed;
 		// should this be in FixedUpdate or what??
 		body.AddForce (movementUnit);
+
+		if (this.IsMoving ()) {
+			playerAnimator.SetFloat ("PlayerMovementSpeed", body.velocity.x);
+
+		}
+
+		if (this.IsOnGround ()) {
+			playerAnimator.SetBool ("PlayerOnGround", true);
+
+		} else {
+			playerAnimator.SetBool ("PlayerOnGround", false);
+
+		}
+	}
+
+	private bool IsOnGround () {
+		bool pred = false;
+		// and player on solid surface
+		// actually calculate this...
+		float raycastLen = 1.05f;
+//		float raycastLen = 0.95f;
+		RaycastHit2D platformHit = Physics2D.Raycast (transform.position, Vector2.down, raycastLen, 1 << LayerMask.NameToLayer("Platforms"));
+
+		if (platformHit.collider != null) {
+			if (platformHit.collider.CompareTag ("TerrestrialSurface")) {
+				pred = true;
+			}
+		}
+
+		return pred;
+	}
+
+	private bool IsMoving () {
+		bool pred = false;
+		if (body.velocity.x > 0 || body.velocity.y > 0) {
+			pred = true;
+
+		}
+
+		return pred;
 	}
 
 //	void OnCollisionStay (Collision2D other) {
@@ -110,15 +148,24 @@ public class TerrestrialPlayerController : MonoBehaviour {
 		// get dropped in like a bg, and the collision boxes will added afterwards
 		// Debug.Log (other.gameObject.name);
 		if (other.gameObject.tag == "TerrestrialSurface") {
-			// also make sure we hit on the bottom?
+//			playerAnimator.SetBool ("PlayerOnGround", true);
 
+			// also make sure we hit on the bottom?
 			if (movementUnit.x == 0) {
-				playerAnimator.SetTrigger ("PlayerIdleRightPos");
+//				playerAnimator.SetTrigger ("PlayerIdleRightPos");
 
 			} else if (movementUnit.x > 0) {
-				playerAnimator.SetTrigger ("PlayerIdleRightPos");
+				// this might have been the problem
+//				playerAnimator.SetTrigger ("PlayerIdleRightPos");
 
 			}
+		}
+	}
+
+	void OnCollisionExit2D (Collision2D other) {
+		if (other.gameObject.tag == "TerrestrialSurface") {
+//			playerAnimator.SetBool ("PlayerOnGround", false);
+
 		}
 	}
 }

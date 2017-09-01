@@ -12,3 +12,10 @@ Sprites
 * i think it should ideally be a power of 2?
 * https://blogs.unity3d.com/2015/06/19/pixel-perfect-2d/
 * https://www.reddit.com/r/Unity2D/comments/2bsoj1/recommended\_best\_practices\_for\_pixel\_art\_games/
+
+*TexturePacker*
+* Data Format: Unity
+* Texture Format: PNG-32
+* Size Contraints: Any size
+* Algorithm: MaxRects
+* Trim Mode: None
