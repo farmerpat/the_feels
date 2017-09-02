@@ -1087,12 +1087,17 @@ Prefab:
     - target: {fileID: 114225511054546358, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
         type: 2}
       propertyPath: jumpSpeed
-      value: 400
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 114225511054546358, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
         type: 2}
       propertyPath: maxMovementSpeed
-      value: 5
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114225511054546358, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
+        type: 2}
+      propertyPath: jumpStackMax
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 95573190762665784, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea, type: 2}

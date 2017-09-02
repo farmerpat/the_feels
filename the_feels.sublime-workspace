@@ -1,0 +1,232 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "using System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\n\npublic class TerrestrialPlayerController : MonoBehaviour {\n\tpublic float deadZoneSize = .1f;\n\tpublic float movementSpeed = 5.0f;\n\tpublic float jumpSpeed = 200.0f;\n\tpublic int jumpStackMax = 3;\n\tpublic float maxJumpSpeed = 366.66f;\n\tpublic float maxMovementSpeed = 10.0f;\n\n\tprivate Vector2 movementUnit = new Vector2 ();\n\tprivate float positiveInputTolerance;\n\tprivate float negativeInputTolerance;\n\tprivate Rigidbody2D body;\n\tprivate bool jumpButtonPressed = false;\n\tprivate bool jumpButtonReleased = false;\n\tprivate bool jumpAvailable = true;\n\tprivate int jumpStackCount = 0;\n\tprivate Animator playerAnimator;\n\n\t// grab the animator controller and fire the trigger when start moving right, etc\n\t// split up jump anim to jump init and jump land or something\n\n\tvoid Start () {\n\t\tpositiveInputTolerance = deadZoneSize;\n\t\tnegativeInputTolerance = positiveInputTolerance * -1;\n\t\tbody = GetComponent<Rigidbody2D> ();\t\n\t\tplayerAnimator = GetComponent<Animator> ();\n//\t\tDebug.Log (playerAnimator);\n\t\tAnimatorStateInfo stateInfo = playerAnimator.GetCurrentAnimatorStateInfo (0);\n//\t\tDebug.Log (stateInfo);\n\n\t}\n\t\n\tvoid Update () {\n\t\t// https://blogs.msdn.microsoft.com/nathalievangelist/2014/12/16/joystick-input-in-unity-using-xbox360-controller/\n\t\t// http://wiki.unity3d.com/index.php?title=Xbox360Controller\n\t\t// it looks like linux/win have different joystick axes than osx. cool.\n\t\tmovementUnit.x = 0;\n\t\tmovementUnit.y = 0;\n\n\t\tif (Input.GetAxis (\"HorizontalLeft\") > positiveInputTolerance) {\n\t\t\t// use maxMovementSpeed to limit speed\n\t\t\t// will probably need a speed counter or something\n\t\t\tif (body.velocity.x <= maxMovementSpeed) {\n\t\t\t\tmovementUnit.x = 1;\n\n\t\t\t}\n\n\t\t\tif (this.IsOnGround ()) {\n\t\t\t\t// probably only have to do this if the animation isn't already running\n//\t\t\t\tplayerAnimator.SetTrigger (\"PlayerWalkRightPos\");\n\n\t\t\t}\n\t\t} else if (Input.GetAxis (\"HorizontalLeft\") < negativeInputTolerance) {\n\t\t\t// turn around so forth.\n\t\t\t// use a flag to keep track of l/r direction\n\t\t\t// use functions to set the animation trigger, so the caller doesn't have\n\t\t\t// to care about the direction...like\n\t\t\t// this.setAnimation(\"idle\");\n\t\t\t// this.setAnimation(\"walk\");\n\t\t\t// this.setAnimation(\"jump\");\n\t\t\t// this.setAnimation(\"etc\");\n\t\t\tmovementUnit.x = -1;\n\n\t\t} else {\n\t\t\tif (this.IsOnGround () && !this.IsMoving()) {\n//\t\t\t\tplayerAnimator.SetTrigger (\"PlayerIdleRightPos\");\n\n\t\t\t}\n\t\t}\n\n\t\t\n\t\t\n\t\t// try using jumpPressed, jumpReleased, and jumpReleasedAndGrounded\n\t\t// instead\n\n\t\tif (this.IsOnGround()) {\n\t\t\tjumpStackCount = 0;\n\t\t\t// do we even need jumpAvailable now?\n            jumpAvailable = true;\n\n\t\t}\n\n\t\t// need to see if it gets released, which should reset the stack\n\t\t// and disable until the ground is hit\n\t\tif (Input.GetButton(\"Jump\")) {\n\t\t\tif (this.IsOnGround()) {\n\t\t\t\tjumpStackCount = 1;\n\n\t\t\t\tif (body.velocity.y <= maxJumpSpeed) {\n                    movementUnit.y = 1;\n\t\t\t\t\t\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\tif (jumpStackCount < jumpStackMax) {\n\t\t\t\t\tjumpStackCount++;\n\n\t\t\t\t\tif (body.velocity.y < maxJumpSpeed) {\n                        movementUnit.y = 1;\n\t\t\t\t\t\t\n\t\t\t\t\t}\n\t\t\t\t} else {\n\t\t\t\t\tjumpAvailable = false;\n\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tDebug.Log(jumpStackCount);\n\t\t\t/*\n\t\t\tif (jumpAvailable) {\n\n\t\t\t} else {\n\n\t\t\t}\n\t\t\t*/\n\t\t}\n\n\t\t/*\n\t\tif (jumpAvailable) {\n\t\t\tif (this.IsOnGround ()) {\n\t\t\t\tif (Input.GetButton (\"Jump\")) {\n\t\t\t\t\tjumpAvailable = false;\n\t\t\t\t\tmovementUnit.y = 1;\n\n\t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\tif (!Input.GetButton (\"Jump\")) {\n\t\t\t\tjumpAvailable = true;\n\n\t\t\t}\n\t\t}\n\t\t*/\n\n\t\tmovementUnit.x *= movementSpeed;\n\n\t\tif (movementUnit.y != 0) {\n            movementUnit.y *= (jumpSpeed / jumpStackCount);\n\t\t}\n\t\t\n\t\t// should this be in FixedUpdate or what??\n\t\tbody.AddForce (movementUnit);\n\n\t\tif (this.IsMoving ()) {\n\t\t\tplayerAnimator.SetFloat (\"PlayerMovementSpeed\", body.velocity.x);\n\n\t\t}\n\n\t\tif (this.IsOnGround ()) {\n\t\t\tplayerAnimator.SetBool (\"PlayerOnGround\", true);\n\n\t\t} else {\n\t\t\tplayerAnimator.SetBool (\"PlayerOnGround\", false);\n\n\t\t}\n\t}\n\n\tprivate bool IsOnGround () {\n\t\tbool pred = false;\n\t\t// and player on solid surface\n\t\t// actually calculate this...\n\t\tfloat raycastLen = 1.05f;\n//\t\tfloat raycastLen = 0.95f;\n\t\tRaycastHit2D platformHit = Physics2D.Raycast (transform.position, Vector2.down, raycastLen, 1 << LayerMask.NameToLayer(\"Platforms\"));\n\n\t\tif (platformHit.collider != null) {\n\t\t\tif (platformHit.collider.CompareTag (\"TerrestrialSurface\")) {\n\t\t\t\tpred = true;\n\t\t\t}\n\t\t}\n\n\t\treturn pred;\n\t}\n\n\tprivate bool IsMoving () {\n\t\tbool pred = false;\n\t\tif (body.velocity.x > 0 || body.velocity.y > 0) {\n\t\t\tpred = true;\n\n\t\t}\n\n\t\treturn pred;\n\t}\n\n//\tvoid OnCollisionStay (Collision2D other) {\n\n//\t}\n\n\tvoid OnCollisionEnter2D (Collision2D other) {\n\t\t// note the player is colliding with three blocks at a time due to the size of hiz hitbox\n\t\t// compared with theirs.  it might make more sense to have large hitboxes surrounding collections\n\t\t// of blocks.  that is what will happen when using a tileset anway.  The set will\n\t\t// get dropped in like a bg, and the collision boxes will added afterwards\n\t\t// Debug.Log (other.gameObject.name);\n\t\tif (other.gameObject.tag == \"TerrestrialSurface\") {\n//\t\t\tplayerAnimator.SetBool (\"PlayerOnGround\", true);\n\n\t\t\t// also make sure we hit on the bottom?\n\t\t\tif (movementUnit.x == 0) {\n//\t\t\t\tplayerAnimator.SetTrigger (\"PlayerIdleRightPos\");\n\n\t\t\t} else if (movementUnit.x > 0) {\n\t\t\t\t// this might have been the problem\n//\t\t\t\tplayerAnimator.SetTrigger (\"PlayerIdleRightPos\");\n\n\t\t\t}\n\t\t}\n\t}\n\n\tvoid OnCollisionExit2D (Collision2D other) {\n\t\tif (other.gameObject.tag == \"TerrestrialSurface\") {\n//\t\t\tplayerAnimator.SetBool (\"PlayerOnGround\", false);\n\n\t\t}\n\t}\n}\n\n\n\n\n\n\n\n\n\n\n",
+			"file": "Assets/Scripts/TerrestrialPlayerController.cs",
+			"file_size": 5651,
+			"file_write_time": 131488131720000000,
+			"settings":
+			{
+				"buffer_size": 5658,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 87.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 485.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/patrickconnelly/hacks/unity/The Feels",
+		"/Users/patrickconnelly/hacks/unity/The Feels/Assets",
+		"/Users/patrickconnelly/hacks/unity/The Feels/Assets/Scripts"
+	],
+	"file_history":
+	[
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Assets/Scripts/TerrestrialPlayerController.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5658,
+						"regions":
+						{
+							"bookmark_a":
+							{
+								"flags": 144,
+								"regions":
+								[
+									[
+										840,
+										840
+									]
+								]
+							}
+						},
+						"selection":
+						[
+							[
+								840,
+								840
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "the_feels.sublime-project",
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 297.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -3,6 +3,7 @@
 /[Bb]uild/
 /[Bb]uilds/
 /[Ll]ibrary/
+.idea/
 
 *.DS_STORE
 *.swp

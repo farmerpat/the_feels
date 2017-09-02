@@ -1,11 +1,13 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TerrestrialPlayerController : MonoBehaviour {
 	public float deadZoneSize = .1f;
 	public float movementSpeed = 5.0f;
-	public float jumpSpeed = 350.0f;
+	public float jumpSpeed = 200.0f;
+	public int jumpStackMax = 6;
+	public float maxJumpSpeed = 366.66f;
 	public float maxMovementSpeed = 10.0f;
 
 	private Vector2 movementUnit = new Vector2 ();
@@ -14,7 +16,9 @@ public class TerrestrialPlayerController : MonoBehaviour {
 	private Rigidbody2D body;
 	private bool jumpButtonPressed = false;
 	private bool jumpButtonReleased = false;
+	private bool jumpReleasedAndGroundedPostJump = false;
 	private bool jumpAvailable = true;
+	private int jumpStackCount = 0;
 	private Animator playerAnimator;
 
 	// grab the animator controller and fire the trigger when start moving right, etc
@@ -23,14 +27,14 @@ public class TerrestrialPlayerController : MonoBehaviour {
 	void Start () {
 		positiveInputTolerance = deadZoneSize;
 		negativeInputTolerance = positiveInputTolerance * -1;
-		body = GetComponent<Rigidbody2D> ();	
+		body = GetComponent<Rigidbody2D> ();
 		playerAnimator = GetComponent<Animator> ();
 //		Debug.Log (playerAnimator);
 		AnimatorStateInfo stateInfo = playerAnimator.GetCurrentAnimatorStateInfo (0);
 //		Debug.Log (stateInfo);
 
 	}
-	
+
 	void Update () {
 		// https://blogs.msdn.microsoft.com/nathalievangelist/2014/12/16/joystick-input-in-unity-using-xbox360-controller/
 		// http://wiki.unity3d.com/index.php?title=Xbox360Controller
@@ -69,18 +73,113 @@ public class TerrestrialPlayerController : MonoBehaviour {
 			}
 		}
 
+		// try using jumpPressed, jumpReleased, and jumpReleasedAndGroundedPostJump
+		// private bool jumpButtonPressed = false;
+		// private bool jumpButtonReleased = false;
+		// instead
+
+		// the jump button is pressed
+		//  either we're on the ground or we're not
+
+		bool performJump = false;
+
+		if (Input.GetButtonDown("Jump")) {
+			Debug.Log("button down");
+			if (this.IsOnGround()) {
+				performJump = true;
+                jumpStackCount = 1;
+				jumpButtonPressed = true;
+				jumpButtonReleased = false;
+
+			}
+
+		} else if (Input.GetButtonUp("Jump")) {
+			Debug.Log("button up");
+			if (jumpButtonPressed) {
+				jumpButtonReleased = true;
+
+			} else {
+                jumpButtonPressed = false;
+                jumpButtonReleased = false;
+
+			}
+		} else {
+			// the button is being held and we can use the jumpStackCount
+			// or its not being pressed at all
+			if (Input.GetButton("Jump")) {
+				// its being held
+				jumpStackCount++;
+
+				//Debug.Log(jumpStackCount);
+				if (jumpStackCount <= jumpStackMax) {
+					if ((jumpStackCount % 2) == 0) {
+                        performJump = true;
+
+					}
+				}
+			} else {
+				// its not being presed at all
+
+			}
+		}
+
+
+		/*
+		if (this.IsOnGround() && jumpButtonReleased) {
+			jumpReleasedAndGroundedPostJump = true;
+
+		}
+		*/
+
+/*
+		if (this.IsOnGround()) {
+			jumpStackCount = 0;
+			// do we even need jumpAvailable now?
+            jumpAvailable = true;
+
+		}
+*/
+
+		// need to see if it gets released, which should reset the stack
+		// and disable until the ground is hit
+		// if (Input.GetButton("Jump")) {
+		// 	if (this.IsOnGround()) {
+		// 		jumpStackCount = 1;
+
+		// 		if (body.velocity.y <= maxJumpSpeed) {
+  //                   movementUnit.y = 1;
+
+		// 		}
+		// 	} else {
+		// 		if (jumpStackCount < jumpStackMax) {
+		// 			jumpStackCount++;
+
+		// 			if (body.velocity.y < maxJumpSpeed) {
+  //                       movementUnit.y = 1;
+
+		// 			}
+		// 		} else {
+		// 			jumpAvailable = false;
+
+		// 		}
+		// 	}
+
+		// 	Debug.Log(jumpStackCount);
+		// 	/*
+		// 	if (jumpAvailable) {
+
+		// 	} else {
+
+		// 	}
+		// 	*/
+		// }
+
+		/*
 		if (jumpAvailable) {
 			if (this.IsOnGround ()) {
 				if (Input.GetButton ("Jump")) {
 					jumpAvailable = false;
 					movementUnit.y = 1;
-
-					// maybe i'll end up having to use separate triggers for transitions
-					// landing on the same state but coming from different states?
-					// for example, we can end up in walking coming from idle or from jmp
-					// this isn't being executed correctly. something seems jacked
-					// in the AnimatorController
-//					playerAnimator.SetTrigger ("PlayerJumpAscendingRightPos");
 
 				}
 			}
@@ -90,9 +189,17 @@ public class TerrestrialPlayerController : MonoBehaviour {
 
 			}
 		}
+		*/
 
 		movementUnit.x *= movementSpeed;
-		movementUnit.y *= jumpSpeed;
+
+		if (performJump) {
+			Debug.Log(jumpStackCount);
+			movementUnit.y = 1;
+            movementUnit.y *= (jumpSpeed / jumpStackCount);
+
+		}
+
 		// should this be in FixedUpdate or what??
 		body.AddForce (movementUnit);
 
