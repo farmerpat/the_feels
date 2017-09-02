@@ -5,8 +5,8 @@ using UnityEngine;
 public class TerrestrialPlayerController : MonoBehaviour {
 	public float deadZoneSize = .1f;
 	public float movementSpeed = 5.0f;
-	public float jumpSpeed = 200.0f;
-	public float maxMovementSpeed = 3.0f;
+	public float jumpSpeed = 350.0f;
+	public float maxMovementSpeed = 10.0f;
 
 	private Vector2 movementUnit = new Vector2 ();
 	private float positiveInputTolerance;
