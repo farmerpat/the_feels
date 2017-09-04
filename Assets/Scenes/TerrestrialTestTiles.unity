@@ -1042,7 +1042,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 193e2d47d11b5479995f0571671b3791,
+      objectReference: {fileID: 21300000, guid: 1d841bb44f1d342e1a3d30489e02abf8,
         type: 3}
     - target: {fileID: 212078462002352276, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
         type: 2}
@@ -1112,6 +1112,56 @@ Prefab:
     - target: {fileID: 61661377297452074, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
         type: 2}
       propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114225511054546358, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
+        type: 2}
+      propertyPath: playerPosRight
+      value: 
+      objectReference: {fileID: 2800000, guid: 193e2d47d11b5479995f0571671b3791, type: 3}
+    - target: {fileID: 114225511054546358, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
+        type: 2}
+      propertyPath: playerPosLeft
+      value: 
+      objectReference: {fileID: 2800000, guid: 05c3e7f6c0ef84a83a8b329711a4b6fe, type: 3}
+    - target: {fileID: 114225511054546358, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
+        type: 2}
+      propertyPath: playerNegRight
+      value: 
+      objectReference: {fileID: 2800000, guid: 3c09e667855c04a4092170b28628b801, type: 3}
+    - target: {fileID: 114225511054546358, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
+        type: 2}
+      propertyPath: playerNegLeft
+      value: 
+      objectReference: {fileID: 2800000, guid: b8b56b6be42f34fb498a0b1ae5cbad06, type: 3}
+    - target: {fileID: 114225511054546358, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
+        type: 2}
+      propertyPath: playerPosRightTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 1d841bb44f1d342e1a3d30489e02abf8, type: 3}
+    - target: {fileID: 114225511054546358, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
+        type: 2}
+      propertyPath: playerPosLeftTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 05c3e7f6c0ef84a83a8b329711a4b6fe, type: 3}
+    - target: {fileID: 114225511054546358, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
+        type: 2}
+      propertyPath: playerNegRightTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 3c09e667855c04a4092170b28628b801, type: 3}
+    - target: {fileID: 114225511054546358, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
+        type: 2}
+      propertyPath: playerNegLeftTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: b8b56b6be42f34fb498a0b1ae5cbad06, type: 3}
+    - target: {fileID: 212078462002352276, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61661377297452074, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
+        type: 2}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:

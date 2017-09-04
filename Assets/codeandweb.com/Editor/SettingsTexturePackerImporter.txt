@@ -2,21 +2,18 @@ version: 2
 importPivots: 1
 tpsheetFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
-- Assets/Sprites/hero_idle_right_pos.tpsheet
 - Assets/Sprites/hero_jump_ascend_right_pos.tpsheet
 - Assets/Sprites/hero_jump_descend_right_pos.tpsheet
 - Assets/Sprites/hero_move_right_pos.tpsheet
 - Assets/Sprites/tiles.tpsheet
 textureFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.png
-- Assets/Sprites/hero_idle_right_pos.png
 - Assets/Sprites/hero_jump_ascend_right_pos.png
 - Assets/Sprites/hero_jump_descend_right_pos.png
 - Assets/Sprites/hero_move_right_pos.png
 - Assets/Sprites/tiles.png
 normalmapFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png
-- 
 - 
 - 
 - 

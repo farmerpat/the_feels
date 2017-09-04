@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
+using Debug = UnityEngine.Debug;
 
 public class TerrestrialPlayerController : MonoBehaviour {
 	public float deadZoneSize = .1f;
@@ -9,6 +12,10 @@ public class TerrestrialPlayerController : MonoBehaviour {
 	public int jumpStackMax = 6;
 	public float maxJumpSpeed = 366.66f;
 	public float maxMovementSpeed = 10.0f;
+	public Texture2D playerPosRightTexture;
+	public Texture2D playerPosLeftTexture;
+	public Texture2D playerNegRightTexture;
+	public Texture2D playerNegLeftTexture;
 
 	private Vector2 movementUnit = new Vector2 ();
 	private float positiveInputTolerance;
@@ -20,6 +27,12 @@ public class TerrestrialPlayerController : MonoBehaviour {
 	private bool jumpAvailable = true;
 	private int jumpStackCount = 0;
 	private Animator playerAnimator;
+	private string playerDirection = "right";
+	private SpriteRenderer spriteRenderer;
+	private Sprite posRightSprite;
+	private Sprite negRightSprite;
+	private Sprite posLeftSprite;
+	private Sprite negLeftSprite;
 
 	// grab the animator controller and fire the trigger when start moving right, etc
 	// split up jump anim to jump init and jump land or something
@@ -29,10 +42,72 @@ public class TerrestrialPlayerController : MonoBehaviour {
 		negativeInputTolerance = positiveInputTolerance * -1;
 		body = GetComponent<Rigidbody2D> ();
 		playerAnimator = GetComponent<Animator> ();
-//		Debug.Log (playerAnimator);
-		AnimatorStateInfo stateInfo = playerAnimator.GetCurrentAnimatorStateInfo (0);
-//		Debug.Log (stateInfo);
+		spriteRenderer = GetComponent<SpriteRenderer>();
 
+		posRightSprite = Sprite.Create(
+			playerPosRightTexture,
+			new Rect(
+				0.0f,
+				0.0f,
+				playerPosRightTexture.width / 2.0f,
+				playerPosRightTexture.height
+			),
+			new Vector2(0.5f, 0.5f),
+			32.0f
+		);
+
+		posLeftSprite = Sprite.Create(
+			playerPosLeftTexture,
+			new Rect(
+				0.0f,
+				//32.0f,
+				0.0f,
+				playerPosLeftTexture.width / 2.0f,
+				playerPosLeftTexture.height
+			),
+			new Vector2(0.5f, 0.5f),
+			32.0f
+		);
+
+        negRightSprite = Sprite.Create(
+			playerNegRightTexture,
+			new Rect(
+				0.0f,
+				0.0f,
+				playerNegRightTexture.width / 2.0f,
+				playerNegRightTexture.height
+			),
+			new Vector2(0.5f, 0.5f),
+			32.0f
+		);
+
+        negLeftSprite = Sprite.Create(
+			playerNegLeftTexture,
+			new Rect(
+				0.0f,
+				0.0f,
+				playerNegLeftTexture.width / 2.0f,
+				playerNegLeftTexture.height
+			),
+			new Vector2(0.5f, 0.5f),
+			32.0f
+		);
+	}
+
+	void ChangeGraphicDirections(string dir) {
+        // we are probably going to want to change the state machine used
+        // in the animator controller, if such a thing is possible,
+        // in addition to changing the sprite
+		// going to have to take charge into account here also
+		if (dir == "right") {
+			spriteRenderer.sprite = posRightSprite;
+            playerAnimator.SetBool ("PlayerFacingRight", true);
+
+		} else if (dir == "left") {
+			spriteRenderer.sprite = posLeftSprite;
+            playerAnimator.SetBool ("PlayerFacingRight", false);
+
+		}
 	}
 
 	void Update () {
@@ -43,6 +118,11 @@ public class TerrestrialPlayerController : MonoBehaviour {
 		movementUnit.y = 0;
 
 		if (Input.GetAxis ("HorizontalLeft") > positiveInputTolerance) {
+			if (playerDirection != "right") {
+                playerDirection = "right";
+				this.ChangeGraphicDirections("right");
+
+			}
 			// use maxMovementSpeed to limit speed
 			// will probably need a speed counter or something
 			if (body.velocity.x <= maxMovementSpeed) {
@@ -56,17 +136,19 @@ public class TerrestrialPlayerController : MonoBehaviour {
 
 			}
 		} else if (Input.GetAxis ("HorizontalLeft") < negativeInputTolerance) {
-			// turn around so forth.
-			// use a flag to keep track of l/r direction
-			// use functions to set the animation trigger, so the caller doesn't have
-			// to care about the direction...like
-			// this.setAnimation("idle");
-			// this.setAnimation("walk");
-			// this.setAnimation("jump");
-			// this.setAnimation("etc");
+			if (playerDirection != "left") {
+                playerDirection = "left";
+				this.ChangeGraphicDirections("left");
+
+			}
+
 			movementUnit.x = -1;
 
 		} else {
+			// IF THE VELOCITY.X !=0, THEN APPLY MILD FORCE IN THE OPPOSITE DIRECTION
+			// TO HELP THE PHYSICS SUCK LESS!
+			
+			// rm this shit
 			if (this.IsOnGround () && !this.IsMoving()) {
 //				playerAnimator.SetTrigger ("PlayerIdleRightPos");
 
@@ -209,12 +291,22 @@ public class TerrestrialPlayerController : MonoBehaviour {
 		}
 
 		if (this.IsOnGround ()) {
-			playerAnimator.SetBool ("PlayerOnGround", true);
+            playerAnimator.SetBool ("PlayerOnGround", true);
 
-		} else {
-			playerAnimator.SetBool ("PlayerOnGround", false);
+        } else {
+            playerAnimator.SetBool ("PlayerOnGround", false);
 
 		}
+		
+		// maybe one AnimatorController for pos and an override controller for neg
+		// will have to create a flag for player about facing left or right
+		// and can add transitions to each corresponding state of the "sub machine"
+		// if the direction player is facing changes.
+		// the reason that a separate override controller for each
+		// posleft,posright,negleft,negright seems like it won't work
+		// is because the conditions will be different for left and right
+		// like speed >.1 instead of speed <-.1
+		// hmmm
 	}
 
 	private bool IsOnGround () {
@@ -236,7 +328,7 @@ public class TerrestrialPlayerController : MonoBehaviour {
 
 	private bool IsMoving () {
 		bool pred = false;
-		if (body.velocity.x > 0 || body.velocity.y > 0) {
+		if (body.velocity.x > 0 || body.velocity.x < 0 || body.velocity.y > 0) {
 			pred = true;
 
 		}

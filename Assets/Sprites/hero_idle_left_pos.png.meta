@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 1d841bb44f1d342e1a3d30489e02abf8
-timeCreated: 1504505758
+guid: 05c3e7f6c0ef84a83a8b329711a4b6fe
+timeCreated: 1504504212
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: hero_idle_right_pos_0
-    21300002: hero_idle_right_pos_1
+    21300000: hero_idle_left_pos_0
+    21300002: hero_idle_left_pos_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -101,7 +101,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hero_idle_right_pos_0
+      name: hero_idle_left_pos_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,7 +115,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: hero_idle_right_pos_1
+      name: hero_idle_left_pos_1
       rect:
         serializedVersion: 2
         x: 32
