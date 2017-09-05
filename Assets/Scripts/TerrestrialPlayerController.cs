@@ -205,85 +205,14 @@ public class TerrestrialPlayerController : MonoBehaviour {
 			}
 		}
 
-
-		/*
-		if (this.IsOnGround() && jumpButtonReleased) {
-			jumpReleasedAndGroundedPostJump = true;
-
-		}
-		*/
-
-/*
-		if (this.IsOnGround()) {
-			jumpStackCount = 0;
-			// do we even need jumpAvailable now?
-            jumpAvailable = true;
-
-		}
-*/
-
-		// need to see if it gets released, which should reset the stack
-		// and disable until the ground is hit
-		// if (Input.GetButton("Jump")) {
-		// 	if (this.IsOnGround()) {
-		// 		jumpStackCount = 1;
-
-		// 		if (body.velocity.y <= maxJumpSpeed) {
-  //                   movementUnit.y = 1;
-
-		// 		}
-		// 	} else {
-		// 		if (jumpStackCount < jumpStackMax) {
-		// 			jumpStackCount++;
-
-		// 			if (body.velocity.y < maxJumpSpeed) {
-  //                       movementUnit.y = 1;
-
-		// 			}
-		// 		} else {
-		// 			jumpAvailable = false;
-
-		// 		}
-		// 	}
-
-		// 	Debug.Log(jumpStackCount);
-		// 	/*
-		// 	if (jumpAvailable) {
-
-		// 	} else {
-
-		// 	}
-		// 	*/
-		// }
-
-		/*
-		if (jumpAvailable) {
-			if (this.IsOnGround ()) {
-				if (Input.GetButton ("Jump")) {
-					jumpAvailable = false;
-					movementUnit.y = 1;
-
-				}
-			}
-		} else {
-			if (!Input.GetButton ("Jump")) {
-				jumpAvailable = true;
-
-			}
-		}
-		*/
-
 		movementUnit.x *= movementSpeed;
 
 		if (performJump) {
-			Debug.Log(jumpStackCount);
+			//Debug.Log(jumpStackCount);
 			movementUnit.y = 1;
             movementUnit.y *= (jumpSpeed / jumpStackCount);
 
 		}
-
-		// should this be in FixedUpdate or what??
-		body.AddForce (movementUnit);
 
 		if (this.IsMoving ()) {
 			playerAnimator.SetFloat ("PlayerMovementSpeed", body.velocity.x);
@@ -297,7 +226,10 @@ public class TerrestrialPlayerController : MonoBehaviour {
             playerAnimator.SetBool ("PlayerOnGround", false);
 
 		}
-		
+
+		// should this be in FixedUpdate or what??
+		body.AddForce (movementUnit);
+
 		// maybe one AnimatorController for pos and an override controller for neg
 		// will have to create a flag for player about facing left or right
 		// and can add transitions to each corresponding state of the "sub machine"
