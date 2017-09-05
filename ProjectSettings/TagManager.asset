@@ -52,3 +52,6 @@ TagManager:
   - name: PlayerActiveAura
     uniqueID: 124975787
     locked: 0
+  - name: TerrestrialPlayer
+    uniqueID: 204707639
+    locked: 0
