@@ -42,6 +42,20 @@ Thoughts
 * consider a head-detatching, expanding, morphing animation for the ascention following
   terrestrial level completion
 
+Terrestrial Plane
+-----------------
+* try and turn on grid snap
+  - this can be leveraged with help from the 32 pixels per unit
+  - should be able to start with single tiles with white in them
+  - these tiles can be colored and combined into collections of game objects that will become the building-blocks of levels
+
+* a platform segment game object can have the following:
+  - a depleatable charge
+  - a charge cycle
+    * some time red
+    * some time blue
+    * some time white (no charge)
+
 Ethereal Plane
 --------------
 * the player's goal is to navigate the psyche and balance the damaged parts
