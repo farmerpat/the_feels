@@ -1219,17 +1219,17 @@ Prefab:
     - target: {fileID: 20874135262226036, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
         type: 2}
       propertyPath: m_BackGroundColor.r
-      value: 0.6123225
+      value: 0.8308824
       objectReference: {fileID: 0}
     - target: {fileID: 20874135262226036, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
         type: 2}
       propertyPath: m_BackGroundColor.g
-      value: 0.59191173
+      value: 0.72824395
       objectReference: {fileID: 0}
     - target: {fileID: 20874135262226036, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
         type: 2}
       propertyPath: m_BackGroundColor.b
-      value: 0.6764706
+      value: 0.57428634
       objectReference: {fileID: 0}
     - target: {fileID: 114225511054546358, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
         type: 2}
@@ -1320,6 +1320,11 @@ Prefab:
         type: 2}
       propertyPath: m_SortingLayer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 212078462002352276, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 95573190762665784, guid: e77bbbf35cc5f4e9eb3df7fcc9dd77ea, type: 2}

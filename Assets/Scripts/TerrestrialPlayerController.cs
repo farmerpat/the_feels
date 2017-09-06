@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Assertions.Must;
 using Debug = UnityEngine.Debug;
 
+// old camera color: 9C97AC00
 public class TerrestrialPlayerController : MonoBehaviour {
 	public float deadZoneSize = .1f;
 	public float movementSpeed = 5.0f;
@@ -16,6 +17,7 @@ public class TerrestrialPlayerController : MonoBehaviour {
 	public Texture2D playerPosLeftTexture;
 	public Texture2D playerNegRightTexture;
 	public Texture2D playerNegLeftTexture;
+	public float fireSpeed = 50.0f;
 
 	private Vector2 movementUnit = new Vector2 ();
 	private float positiveInputTolerance;
@@ -33,6 +35,8 @@ public class TerrestrialPlayerController : MonoBehaviour {
 	private Sprite negRightSprite;
 	private Sprite posLeftSprite;
 	private Sprite negLeftSprite;
+	private bool fireAvailable = true;
+	private GameObject bulletToFire;
 
 	// grab the animator controller and fire the trigger when start moving right, etc
 	// split up jump anim to jump init and jump land or something
@@ -147,13 +151,24 @@ public class TerrestrialPlayerController : MonoBehaviour {
 		} else {
 			// IF THE VELOCITY.X !=0, THEN APPLY MILD FORCE IN THE OPPOSITE DIRECTION
 			// TO HELP THE PHYSICS SUCK LESS!
-			
+
 			// rm this shit
 			if (this.IsOnGround () && !this.IsMoving()) {
 //				playerAnimator.SetTrigger ("PlayerIdleRightPos");
 
 			}
 		}
+
+        if (Input.GetButtonDown("Fire1")) {
+            if (fireAvailable) {
+                fireAvailable = false;
+                this.FireBullet();
+
+            }
+        } else if (Input.GetButtonUp("Fire1")) {
+	        fireAvailable = true;
+
+        }
 
 		// try using jumpPressed, jumpReleased, and jumpReleasedAndGroundedPostJump
 		// private bool jumpButtonPressed = false;
@@ -166,7 +181,6 @@ public class TerrestrialPlayerController : MonoBehaviour {
 		bool performJump = false;
 
 		if (Input.GetButtonDown("Jump")) {
-			Debug.Log("button down");
 			if (this.IsOnGround()) {
 				performJump = true;
                 jumpStackCount = 1;
@@ -176,7 +190,6 @@ public class TerrestrialPlayerController : MonoBehaviour {
 			}
 
 		} else if (Input.GetButtonUp("Jump")) {
-			Debug.Log("button up");
 			if (jumpButtonPressed) {
 				jumpButtonReleased = true;
 
@@ -192,7 +205,6 @@ public class TerrestrialPlayerController : MonoBehaviour {
 				// its being held
 				jumpStackCount++;
 
-				//Debug.Log(jumpStackCount);
 				if (jumpStackCount <= jumpStackMax) {
 					if ((jumpStackCount % 2) == 0) {
                         performJump = true;
@@ -208,7 +220,6 @@ public class TerrestrialPlayerController : MonoBehaviour {
 		movementUnit.x *= movementSpeed;
 
 		if (performJump) {
-			//Debug.Log(jumpStackCount);
 			movementUnit.y = 1;
             movementUnit.y *= (jumpSpeed / jumpStackCount);
 
@@ -239,6 +250,41 @@ public class TerrestrialPlayerController : MonoBehaviour {
 		// is because the conditions will be different for left and right
 		// like speed >.1 instead of speed <-.1
 		// hmmm
+	}
+
+	private void FireBullet() {
+		// assume pos for now
+		//float bulletXPos = transform.position.x;
+		//float bulletYPos = transform.position.y;
+		float bulletXPos = 0.0f;
+		float bulletYPos = 0.0f;
+
+		Vector3 movementDir;
+		GameObject bulletSpawnPointGameObj;
+
+		if (playerDirection == "right") {
+			bulletSpawnPointGameObj = (GameObject) transform.Find("PlayerBulletSpawnPointRight").gameObject;
+			movementDir = Vector3.right;
+
+		} else {
+			bulletSpawnPointGameObj = (GameObject) transform.Find("PlayerBulletSpawnPointLeft").gameObject;
+			movementDir = Vector3.left;
+
+		}
+
+		if (bulletSpawnPointGameObj) {
+			bulletXPos += bulletSpawnPointGameObj.transform.position.x;
+			bulletYPos += bulletSpawnPointGameObj.transform.position.y;
+
+		}
+
+        bulletToFire = (GameObject)Instantiate(Resources.Load("TerrestrialPlayerPosBullet"));
+
+		if (bulletToFire) {
+			bulletToFire.transform.position = new Vector3(bulletXPos, bulletYPos);
+            bulletToFire.GetComponent<Rigidbody2D>().AddForce(movementDir * fireSpeed);
+
+		}
 	}
 
 	private bool IsOnGround () {
