@@ -41,3 +41,5 @@ Thoughts
   the orbital
 * consider a head-detatching, expanding, morphing animation for the ascention following
   terrestrial level completion
+
+* consider making the player discharge feeling values when shooting. conditionally though, this mechanic is exploitable
