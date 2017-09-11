@@ -41,5 +41,32 @@ Thoughts
   the orbital
 * consider a head-detatching, expanding, morphing animation for the ascention following
   terrestrial level completion
-
 * consider making the player discharge feeling values when shooting. conditionally though, this mechanic is exploitable
+
+=======
+Terrestrial Plane
+-----------------
+* try and turn on grid snap
+  - this can be leveraged with help from the 32 pixels per unit
+  - should be able to start with single tiles with white in them
+  - these tiles can be colored and combined into collections of game objects that will become the building-blocks of levels
+
+* a platform segment game object can have the following:
+  - a depleatable charge
+  - a charge cycle
+    * some time red
+    * some time blue
+    * some time white (no charge)
+
+Ethereal Plane
+--------------
+* the player's goal is to navigate the psyche and balance the damaged parts
+* the level itself will represent the psyche
+* it should be mostly comprised of smooth, cool-colored graphics. like a steel cave
+* the exceptions to this smoothness will be the jagged, damaged parts
+* the damnaged portions will have colors, and need to be balanced
+* as they become more balanced by the opposite color, the jagged sprite will be replaced by more and more full sprites, until the area is completely healed.
+* the damaged area should shoot its own color at the player
+* perhaps very damanged areas will shoot defense mechanisms that do not affect balance, but cause direct damage
+* there should probably be random damaging projectiles coming from other level elements
+* there should probably be static pricklies to navigate around also
